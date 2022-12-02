@@ -3,18 +3,18 @@
 #imports
 import os
 
-#rename function
+#main renamer function
 def main():
     #await user input as directory path
-    dirname = input("Please enter a directory path:");
+    dir_name = input("Please enter a directory path:");
     #check if it is a directory
-    if (not(os.path.isdir(dirname))):
+    if (not(os.path.isdir(dir_name))):
         print("Directory not exists.")
         return
     #input the name that all the files will start with
-    name = input("Please enter a root file name:\n")
+    root_name = input("Please enter a root file name:\n")
     #iterate through all the files
-    for count, filename in enumerate(os.listdir(dirname)):
+    for count, filename in enumerate(os.listdir(dir_name)):
         #get the file extension
         ext = filename.split(".")
         extension = "." + ext[-1]
@@ -27,14 +27,14 @@ def main():
         else:
             count = str(count)
         #make the new file name
-        tmp = name + count + extension
-        src = dirname + filename
-        dst = dirname + tmp
+        new_filename = root_name + count + extension
+        src = dir_name + filename
+        dst = dir_name + new_filename
         #rename the file
         os.rename(src, dst)
 
-# Driver Code
+#Driver Code
 if __name__ == '__main__':
 
-    # Calling main() function
+    #Calling main() function
     main()
